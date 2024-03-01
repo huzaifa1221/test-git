@@ -1,0 +1,29 @@
+#deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-deployment
+  namespace: react-app
+  labels:
+    app: react
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react
+      # tier: 
+#pod tempalte
+  template:
+    metadata:
+      name: react-pod
+      labels:
+        app: react
+        # tier: 
+    spec: # Pod spec
+      containers:
+      - name: react-container
+        #https://hub.docker.com/_/nginx
+        image: react-app
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: IfNotPresent
